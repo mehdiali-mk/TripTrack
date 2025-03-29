@@ -9,6 +9,8 @@ import PageNotFound from "./pages/PageNotFound.jsx";
 import AppLayout from "./pages/AppLayout.jsx";
 import CityLists from "./Components/CityLists.jsx";
 import CountryList from "./Components/CountryList.jsx";
+import City from "./Components/City.jsx";
+import Form from "./Components/Form.jsx";
 
 const BASE_URL = "http://localhost:8088";
 
@@ -41,16 +43,18 @@ function App() {
         <Route path="/product" element={<Product />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/app" element={<AppLayout />}>
-          <Route index element={<Navigate to="/app/cities" />} />
+          <Route index element={<Navigate replace to="/app/cities" />} />
           <Route
             path="cities"
             element={<CityLists cities={cities} isLoading={isLoading} />}
           />
+          <Route path="cities/:id" element={<City />} />
+
           <Route
             path="countries"
             element={<CountryList cities={cities} isLoading={isLoading} />}
           />
-          <Route path="form" element={<p>My New Form</p>} />
+          <Route path="form" element={<Form />} />
         </Route>
         <Route path="/login" element={<Login />} />
         <Route path="*" element={<PageNotFound />} />
