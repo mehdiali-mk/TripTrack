@@ -11,6 +11,7 @@ import styles from "./Map.module.css";
 import { useEffect, useState } from "react";
 import { useCityContext } from "../Contexts/CityContext.jsx";
 import { useGeolocation } from "../Hooks/useGeolocation.js";
+import { useUrlPosition } from "../Hooks/useUrlPosition.js";
 import Button from "./Button.jsx";
 
 function Map() {
@@ -24,10 +25,7 @@ function Map() {
     getPosition,
   } = useGeolocation();
 
-  const [searchParams, setSearchParams] = useSearchParams();
-
-  const latitude = searchParams.get("lat");
-  const longitude = searchParams.get("lng");
+  const [latitude, longitude] = useUrlPosition();
 
   useEffect(
     function () {
